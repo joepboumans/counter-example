@@ -24,7 +24,7 @@ def handle_pkt(pkt):
     cpkt += 1
     print("Got a packet, num: {}".format(cpkt))
     
-    pkt.show2()
+    # pkt.show2()
     assert(pkt[IP].dst == "10.0.0.1")
 
 def main():
@@ -39,9 +39,9 @@ def main():
 
     print("Sending on interface %s to %s" % (iface, str(src_addr)))
     print("-" * 100)
-    for _ in range(30):
+    for _ in range(4000):
         pkt =  Ether(dst=get_if_hwaddr(iface), src='ff:ff:ff:ff:ff:ff', type=0x800)
-        pkt1 = pkt /IP(dst=dst_addr, src=src_addr, tos=46, proto=17) / UDP(dport=1234, sport=random.randint(49152,65535)) / Raw(randstring(length=128)) # / sys.argv[2]
+        pkt1 = pkt /IP(dst=dst_addr, src=src_addr, tos=46, proto=17) / UDP(dport=1234, sport=random.randint(49152,65535)) / Raw(randstring(length=16)) # / sys.argv[2]
         sendp(pkt1, iface=iface, verbose=False)
 
 

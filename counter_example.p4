@@ -122,7 +122,6 @@ control SwitchIngress(inout header_t hdr, inout metadata_t ig_md,
   action hit(PortId_t port) {
     ig_intr_tm_md.ucast_egress_port = port;
     hdr.ipv4.ttl = hdr.ipv4.ttl - 1;
-    ig_intr_tm_md.bypass_egress = 1w1;
     ig_intr_dprsr_md.drop_ctl = 0x0;
   }
 
