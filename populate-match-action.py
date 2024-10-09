@@ -1,6 +1,6 @@
 from ipaddress import ip_address
 
-p4 = bfrt.p4_hello_world.pipe
+p4 = bfrt.counter_example.pipe
 
 
 def get_pg_info(dev_port, queue_id):
@@ -17,8 +17,8 @@ def get_pg_info(dev_port, queue_id):
 
 forward = p4.SwitchIngress.forward
 
-# forward.add_with_hit(dst_addr="10.0.0.2",  port=5)
-# forward.add_with_hit(dst_addr="10.0.0.1",  port=3)
+forward.add_with_hit(dst_addr="10.0.0.2",  port=5)
+forward.add_with_hit(dst_addr="10.0.0.1",  port=3)
 
 myPorts=[3,5]
 bfrt.tf1.tm.port.sched_cfg.mod(dev_port=3, max_rate_enable=True)

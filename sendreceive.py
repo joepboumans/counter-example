@@ -38,12 +38,11 @@ def main():
     src_addr = "10.0.0.2"
 
     print("Sending on interface %s to %s" % (iface, str(src_addr)))
-    pkt =  Ether(dst=get_if_hwaddr(iface), src='ff:ff:ff:ff:ff:ff', type=0x800)
-    pkt1 = pkt /IP(dst=dst_addr, src=src_addr, tos=46, proto=17) / UDP(dport=1234, sport=random.randint(49152,65535)) / Raw(randstring(length=128)) # / sys.argv[2]
-    pkt1.show2()
     print("-" * 100)
-    sendp(pkt1, iface=iface, verbose=False)
-
+    for _ in range(30):
+        pkt =  Ether(dst=get_if_hwaddr(iface), src='ff:ff:ff:ff:ff:ff', type=0x800)
+        pkt1 = pkt /IP(dst=dst_addr, src=src_addr, tos=46, proto=17) / UDP(dport=1234, sport=random.randint(49152,65535)) / Raw(randstring(length=128)) # / sys.argv[2]
+        sendp(pkt1, iface=iface, verbose=False)
 
 
 if __name__ == "__main__":
