@@ -130,7 +130,9 @@ control SwitchIngress(inout header_t hdr, inout metadata_t ig_md,
   }
   table forward {
     key = { 
-      hdr.ipv4.dst_addr : exact;
+      /*hdr.ipv4.dst_addr : exact;*/
+      ig_intr_md.ingress_port: exact;
+      
   }
   actions = { 
     hit;
