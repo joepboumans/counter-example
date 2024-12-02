@@ -71,7 +71,7 @@ for port_number in [132, 140, 148, 156]:
         bfrt.tf1.tm.queue.sched_cfg.mod(pipe=pipe_num, pg_id=pg_id, pg_queue=pg_queue, min_priority=queue_id,max_priority=queue_id)
 
 print("populating forward table...")
-forward_tbl = p4.WaterfallIngress.forward
+forward_tbl = p4.SwitchIngress.forward
 forward_tbl.add_with_hit(ingress_port=132, port=148)
 forward_tbl.add_with_hit(ingress_port=148, port=132)
 forward_tbl.add_with_hit(ingress_port=140, port=156)
